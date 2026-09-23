@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ApiPublicMaintenanceOfflineSweepRouteImport } from './routes/api/public/maintenance/offline-sweep'
 import { Route as ApiPublicBinsBinIdTelemetryRouteImport } from './routes/api/public/bins/$binId/telemetry'
 import { Route as ApiPublicVehiclesVehicleIdCollectRouteImport } from './routes/api/public/vehicles/$vehicleId/collect'
 import { Route as ApiPublicVehiclesVehicleIdLocationRouteImport } from './routes/api/public/vehicles/$vehicleId/location'
@@ -19,6 +20,12 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicMaintenanceOfflineSweepRoute =
+  ApiPublicMaintenanceOfflineSweepRouteImport.update({
+    id: '/api/public/maintenance/offline-sweep',
+    path: '/api/public/maintenance/offline-sweep',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ApiPublicBinsBinIdTelemetryRoute =
   ApiPublicBinsBinIdTelemetryRouteImport.update({
     id: '/api/public/bins/$binId/telemetry',
@@ -40,12 +47,14 @@ const ApiPublicVehiclesVehicleIdLocationRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/api/public/maintenance/offline-sweep': typeof ApiPublicMaintenanceOfflineSweepRoute
   '/api/public/bins/$binId/telemetry': typeof ApiPublicBinsBinIdTelemetryRoute
   '/api/public/vehicles/$vehicleId/collect': typeof ApiPublicVehiclesVehicleIdCollectRoute
   '/api/public/vehicles/$vehicleId/location': typeof ApiPublicVehiclesVehicleIdLocationRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/api/public/maintenance/offline-sweep': typeof ApiPublicMaintenanceOfflineSweepRoute
   '/api/public/bins/$binId/telemetry': typeof ApiPublicBinsBinIdTelemetryRoute
   '/api/public/vehicles/$vehicleId/collect': typeof ApiPublicVehiclesVehicleIdCollectRoute
   '/api/public/vehicles/$vehicleId/location': typeof ApiPublicVehiclesVehicleIdLocationRoute
@@ -53,6 +62,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/api/public/maintenance/offline-sweep': typeof ApiPublicMaintenanceOfflineSweepRoute
   '/api/public/bins/$binId/telemetry': typeof ApiPublicBinsBinIdTelemetryRoute
   '/api/public/vehicles/$vehicleId/collect': typeof ApiPublicVehiclesVehicleIdCollectRoute
   '/api/public/vehicles/$vehicleId/location': typeof ApiPublicVehiclesVehicleIdLocationRoute
@@ -61,18 +71,21 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/api/public/maintenance/offline-sweep'
     | '/api/public/bins/$binId/telemetry'
     | '/api/public/vehicles/$vehicleId/collect'
     | '/api/public/vehicles/$vehicleId/location'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/api/public/maintenance/offline-sweep'
     | '/api/public/bins/$binId/telemetry'
     | '/api/public/vehicles/$vehicleId/collect'
     | '/api/public/vehicles/$vehicleId/location'
   id:
     | '__root__'
     | '/'
+    | '/api/public/maintenance/offline-sweep'
     | '/api/public/bins/$binId/telemetry'
     | '/api/public/vehicles/$vehicleId/collect'
     | '/api/public/vehicles/$vehicleId/location'
@@ -80,6 +93,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ApiPublicMaintenanceOfflineSweepRoute: typeof ApiPublicMaintenanceOfflineSweepRoute
   ApiPublicBinsBinIdTelemetryRoute: typeof ApiPublicBinsBinIdTelemetryRoute
   ApiPublicVehiclesVehicleIdCollectRoute: typeof ApiPublicVehiclesVehicleIdCollectRoute
   ApiPublicVehiclesVehicleIdLocationRoute: typeof ApiPublicVehiclesVehicleIdLocationRoute
@@ -92,6 +106,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/maintenance/offline-sweep': {
+      id: '/api/public/maintenance/offline-sweep'
+      path: '/api/public/maintenance/offline-sweep'
+      fullPath: '/api/public/maintenance/offline-sweep'
+      preLoaderRoute: typeof ApiPublicMaintenanceOfflineSweepRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/public/bins/$binId/telemetry': {
@@ -120,6 +141,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ApiPublicMaintenanceOfflineSweepRoute: ApiPublicMaintenanceOfflineSweepRoute,
   ApiPublicBinsBinIdTelemetryRoute: ApiPublicBinsBinIdTelemetryRoute,
   ApiPublicVehiclesVehicleIdCollectRoute:
     ApiPublicVehiclesVehicleIdCollectRoute,
