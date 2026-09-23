@@ -10,33 +10,79 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ApiPublicBinsBinIdTelemetryRouteImport } from './routes/api/public/bins/$binId/telemetry'
+import { Route as ApiPublicVehiclesVehicleIdCollectRouteImport } from './routes/api/public/vehicles/$vehicleId/collect'
+import { Route as ApiPublicVehiclesVehicleIdLocationRouteImport } from './routes/api/public/vehicles/$vehicleId/location'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicBinsBinIdTelemetryRoute =
+  ApiPublicBinsBinIdTelemetryRouteImport.update({
+    id: '/api/public/bins/$binId/telemetry',
+    path: '/api/public/bins/$binId/telemetry',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ApiPublicVehiclesVehicleIdCollectRoute =
+  ApiPublicVehiclesVehicleIdCollectRouteImport.update({
+    id: '/api/public/vehicles/$vehicleId/collect',
+    path: '/api/public/vehicles/$vehicleId/collect',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ApiPublicVehiclesVehicleIdLocationRoute =
+  ApiPublicVehiclesVehicleIdLocationRouteImport.update({
+    id: '/api/public/vehicles/$vehicleId/location',
+    path: '/api/public/vehicles/$vehicleId/location',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/api/public/bins/$binId/telemetry': typeof ApiPublicBinsBinIdTelemetryRoute
+  '/api/public/vehicles/$vehicleId/collect': typeof ApiPublicVehiclesVehicleIdCollectRoute
+  '/api/public/vehicles/$vehicleId/location': typeof ApiPublicVehiclesVehicleIdLocationRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/api/public/bins/$binId/telemetry': typeof ApiPublicBinsBinIdTelemetryRoute
+  '/api/public/vehicles/$vehicleId/collect': typeof ApiPublicVehiclesVehicleIdCollectRoute
+  '/api/public/vehicles/$vehicleId/location': typeof ApiPublicVehiclesVehicleIdLocationRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/api/public/bins/$binId/telemetry': typeof ApiPublicBinsBinIdTelemetryRoute
+  '/api/public/vehicles/$vehicleId/collect': typeof ApiPublicVehiclesVehicleIdCollectRoute
+  '/api/public/vehicles/$vehicleId/location': typeof ApiPublicVehiclesVehicleIdLocationRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/api/public/bins/$binId/telemetry'
+    | '/api/public/vehicles/$vehicleId/collect'
+    | '/api/public/vehicles/$vehicleId/location'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/api/public/bins/$binId/telemetry'
+    | '/api/public/vehicles/$vehicleId/collect'
+    | '/api/public/vehicles/$vehicleId/location'
+  id:
+    | '__root__'
+    | '/'
+    | '/api/public/bins/$binId/telemetry'
+    | '/api/public/vehicles/$vehicleId/collect'
+    | '/api/public/vehicles/$vehicleId/location'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ApiPublicBinsBinIdTelemetryRoute: typeof ApiPublicBinsBinIdTelemetryRoute
+  ApiPublicVehiclesVehicleIdCollectRoute: typeof ApiPublicVehiclesVehicleIdCollectRoute
+  ApiPublicVehiclesVehicleIdLocationRoute: typeof ApiPublicVehiclesVehicleIdLocationRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +94,37 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/bins/$binId/telemetry': {
+      id: '/api/public/bins/$binId/telemetry'
+      path: '/api/public/bins/$binId/telemetry'
+      fullPath: '/api/public/bins/$binId/telemetry'
+      preLoaderRoute: typeof ApiPublicBinsBinIdTelemetryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/vehicles/$vehicleId/collect': {
+      id: '/api/public/vehicles/$vehicleId/collect'
+      path: '/api/public/vehicles/$vehicleId/collect'
+      fullPath: '/api/public/vehicles/$vehicleId/collect'
+      preLoaderRoute: typeof ApiPublicVehiclesVehicleIdCollectRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/vehicles/$vehicleId/location': {
+      id: '/api/public/vehicles/$vehicleId/location'
+      path: '/api/public/vehicles/$vehicleId/location'
+      fullPath: '/api/public/vehicles/$vehicleId/location'
+      preLoaderRoute: typeof ApiPublicVehiclesVehicleIdLocationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ApiPublicBinsBinIdTelemetryRoute: ApiPublicBinsBinIdTelemetryRoute,
+  ApiPublicVehiclesVehicleIdCollectRoute:
+    ApiPublicVehiclesVehicleIdCollectRoute,
+  ApiPublicVehiclesVehicleIdLocationRoute:
+    ApiPublicVehiclesVehicleIdLocationRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
