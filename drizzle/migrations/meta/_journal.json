@@ -8,6 +8,13 @@
       "when": 1790192862305,
       "tag": "0000_smart_waste_core_schema",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1790259702416,
+      "tag": "0001_restrict_reads_to_role_holders",
+      "breakpoints": true
     }
   ]
 }
