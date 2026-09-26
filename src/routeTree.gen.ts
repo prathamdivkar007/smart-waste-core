@@ -10,6 +10,17 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as AuthenticatedAlertsRouteImport } from './routes/_authenticated/alerts'
+import { Route as AuthenticatedAnalyticsRouteImport } from './routes/_authenticated/analytics'
+import { Route as AuthenticatedCollectionsRouteImport } from './routes/_authenticated/collections'
+import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as AuthenticatedMapRouteImport } from './routes/_authenticated/map'
+import { Route as AuthenticatedSettingsRouteImport } from './routes/_authenticated/settings'
+import { Route as AuthenticatedVehiclesRouteImport } from './routes/_authenticated/vehicles'
+import { Route as AuthenticatedBinsIndexRouteImport } from './routes/_authenticated/bins/index'
+import { Route as AuthenticatedBinsBinIdRouteImport } from './routes/_authenticated/bins/$binId'
 import { Route as ApiPublicMaintenanceOfflineSweepRouteImport } from './routes/api/public/maintenance/offline-sweep'
 import { Route as ApiPublicBinsBinIdTelemetryRouteImport } from './routes/api/public/bins/$binId/telemetry'
 import { Route as ApiPublicVehiclesVehicleIdCollectRouteImport } from './routes/api/public/vehicles/$vehicleId/collect'
@@ -19,6 +30,61 @@ const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedAlertsRoute = AuthenticatedAlertsRouteImport.update({
+  id: '/alerts',
+  path: '/alerts',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedAnalyticsRoute = AuthenticatedAnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedCollectionsRoute =
+  AuthenticatedCollectionsRouteImport.update({
+    id: '/collections',
+    path: '/collections',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedMapRoute = AuthenticatedMapRouteImport.update({
+  id: '/map',
+  path: '/map',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedSettingsRoute = AuthenticatedSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedVehiclesRoute = AuthenticatedVehiclesRouteImport.update({
+  id: '/vehicles',
+  path: '/vehicles',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedBinsIndexRoute = AuthenticatedBinsIndexRouteImport.update({
+  id: '/bins/',
+  path: '/bins/',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedBinsBinIdRoute = AuthenticatedBinsBinIdRouteImport.update({
+  id: '/bins/$binId',
+  path: '/bins/$binId',
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const ApiPublicMaintenanceOfflineSweepRoute =
   ApiPublicMaintenanceOfflineSweepRouteImport.update({
@@ -47,6 +113,16 @@ const ApiPublicVehiclesVehicleIdLocationRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/alerts': typeof AuthenticatedAlertsRoute
+  '/analytics': typeof AuthenticatedAnalyticsRoute
+  '/collections': typeof AuthenticatedCollectionsRoute
+  '/dashboard': typeof AuthenticatedDashboardRoute
+  '/map': typeof AuthenticatedMapRoute
+  '/settings': typeof AuthenticatedSettingsRoute
+  '/vehicles': typeof AuthenticatedVehiclesRoute
+  '/bins/$binId': typeof AuthenticatedBinsBinIdRoute
+  '/bins/': typeof AuthenticatedBinsIndexRoute
   '/api/public/maintenance/offline-sweep': typeof ApiPublicMaintenanceOfflineSweepRoute
   '/api/public/bins/$binId/telemetry': typeof ApiPublicBinsBinIdTelemetryRoute
   '/api/public/vehicles/$vehicleId/collect': typeof ApiPublicVehiclesVehicleIdCollectRoute
@@ -54,6 +130,16 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/alerts': typeof AuthenticatedAlertsRoute
+  '/analytics': typeof AuthenticatedAnalyticsRoute
+  '/collections': typeof AuthenticatedCollectionsRoute
+  '/dashboard': typeof AuthenticatedDashboardRoute
+  '/map': typeof AuthenticatedMapRoute
+  '/settings': typeof AuthenticatedSettingsRoute
+  '/vehicles': typeof AuthenticatedVehiclesRoute
+  '/bins/$binId': typeof AuthenticatedBinsBinIdRoute
+  '/bins': typeof AuthenticatedBinsIndexRoute
   '/api/public/maintenance/offline-sweep': typeof ApiPublicMaintenanceOfflineSweepRoute
   '/api/public/bins/$binId/telemetry': typeof ApiPublicBinsBinIdTelemetryRoute
   '/api/public/vehicles/$vehicleId/collect': typeof ApiPublicVehiclesVehicleIdCollectRoute
@@ -62,6 +148,17 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/auth': typeof AuthRoute
+  '/_authenticated/alerts': typeof AuthenticatedAlertsRoute
+  '/_authenticated/analytics': typeof AuthenticatedAnalyticsRoute
+  '/_authenticated/collections': typeof AuthenticatedCollectionsRoute
+  '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/_authenticated/map': typeof AuthenticatedMapRoute
+  '/_authenticated/settings': typeof AuthenticatedSettingsRoute
+  '/_authenticated/vehicles': typeof AuthenticatedVehiclesRoute
+  '/_authenticated/bins/$binId': typeof AuthenticatedBinsBinIdRoute
+  '/_authenticated/bins/': typeof AuthenticatedBinsIndexRoute
   '/api/public/maintenance/offline-sweep': typeof ApiPublicMaintenanceOfflineSweepRoute
   '/api/public/bins/$binId/telemetry': typeof ApiPublicBinsBinIdTelemetryRoute
   '/api/public/vehicles/$vehicleId/collect': typeof ApiPublicVehiclesVehicleIdCollectRoute
@@ -71,6 +168,16 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/auth'
+    | '/alerts'
+    | '/analytics'
+    | '/collections'
+    | '/dashboard'
+    | '/map'
+    | '/settings'
+    | '/vehicles'
+    | '/bins/$binId'
+    | '/bins/'
     | '/api/public/maintenance/offline-sweep'
     | '/api/public/bins/$binId/telemetry'
     | '/api/public/vehicles/$vehicleId/collect'
@@ -78,6 +185,16 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/auth'
+    | '/alerts'
+    | '/analytics'
+    | '/collections'
+    | '/dashboard'
+    | '/map'
+    | '/settings'
+    | '/vehicles'
+    | '/bins/$binId'
+    | '/bins'
     | '/api/public/maintenance/offline-sweep'
     | '/api/public/bins/$binId/telemetry'
     | '/api/public/vehicles/$vehicleId/collect'
@@ -85,6 +202,17 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/_authenticated'
+    | '/auth'
+    | '/_authenticated/alerts'
+    | '/_authenticated/analytics'
+    | '/_authenticated/collections'
+    | '/_authenticated/dashboard'
+    | '/_authenticated/map'
+    | '/_authenticated/settings'
+    | '/_authenticated/vehicles'
+    | '/_authenticated/bins/$binId'
+    | '/_authenticated/bins/'
     | '/api/public/maintenance/offline-sweep'
     | '/api/public/bins/$binId/telemetry'
     | '/api/public/vehicles/$vehicleId/collect'
@@ -93,6 +221,8 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  AuthRoute: typeof AuthRoute
   ApiPublicMaintenanceOfflineSweepRoute: typeof ApiPublicMaintenanceOfflineSweepRoute
   ApiPublicBinsBinIdTelemetryRoute: typeof ApiPublicBinsBinIdTelemetryRoute
   ApiPublicVehiclesVehicleIdCollectRoute: typeof ApiPublicVehiclesVehicleIdCollectRoute
@@ -107,6 +237,83 @@ declare module '@tanstack/react-router' {
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/alerts': {
+      id: '/_authenticated/alerts'
+      path: '/alerts'
+      fullPath: '/alerts'
+      preLoaderRoute: typeof AuthenticatedAlertsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/analytics': {
+      id: '/_authenticated/analytics'
+      path: '/analytics'
+      fullPath: '/analytics'
+      preLoaderRoute: typeof AuthenticatedAnalyticsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/collections': {
+      id: '/_authenticated/collections'
+      path: '/collections'
+      fullPath: '/collections'
+      preLoaderRoute: typeof AuthenticatedCollectionsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/dashboard': {
+      id: '/_authenticated/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof AuthenticatedDashboardRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/map': {
+      id: '/_authenticated/map'
+      path: '/map'
+      fullPath: '/map'
+      preLoaderRoute: typeof AuthenticatedMapRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/settings': {
+      id: '/_authenticated/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof AuthenticatedSettingsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/vehicles': {
+      id: '/_authenticated/vehicles'
+      path: '/vehicles'
+      fullPath: '/vehicles'
+      preLoaderRoute: typeof AuthenticatedVehiclesRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/bins/': {
+      id: '/_authenticated/bins/'
+      path: '/bins'
+      fullPath: '/bins/'
+      preLoaderRoute: typeof AuthenticatedBinsIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/bins/$binId': {
+      id: '/_authenticated/bins/$binId'
+      path: '/bins/$binId'
+      fullPath: '/bins/$binId'
+      preLoaderRoute: typeof AuthenticatedBinsBinIdRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/api/public/maintenance/offline-sweep': {
       id: '/api/public/maintenance/offline-sweep'
@@ -139,8 +346,37 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAlertsRoute: typeof AuthenticatedAlertsRoute
+  AuthenticatedAnalyticsRoute: typeof AuthenticatedAnalyticsRoute
+  AuthenticatedCollectionsRoute: typeof AuthenticatedCollectionsRoute
+  AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+  AuthenticatedMapRoute: typeof AuthenticatedMapRoute
+  AuthenticatedSettingsRoute: typeof AuthenticatedSettingsRoute
+  AuthenticatedVehiclesRoute: typeof AuthenticatedVehiclesRoute
+  AuthenticatedBinsBinIdRoute: typeof AuthenticatedBinsBinIdRoute
+  AuthenticatedBinsIndexRoute: typeof AuthenticatedBinsIndexRoute
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAlertsRoute: AuthenticatedAlertsRoute,
+  AuthenticatedAnalyticsRoute: AuthenticatedAnalyticsRoute,
+  AuthenticatedCollectionsRoute: AuthenticatedCollectionsRoute,
+  AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
+  AuthenticatedMapRoute: AuthenticatedMapRoute,
+  AuthenticatedSettingsRoute: AuthenticatedSettingsRoute,
+  AuthenticatedVehiclesRoute: AuthenticatedVehiclesRoute,
+  AuthenticatedBinsBinIdRoute: AuthenticatedBinsBinIdRoute,
+  AuthenticatedBinsIndexRoute: AuthenticatedBinsIndexRoute,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  AuthRoute: AuthRoute,
   ApiPublicMaintenanceOfflineSweepRoute: ApiPublicMaintenanceOfflineSweepRoute,
   ApiPublicBinsBinIdTelemetryRoute: ApiPublicBinsBinIdTelemetryRoute,
   ApiPublicVehiclesVehicleIdCollectRoute:
