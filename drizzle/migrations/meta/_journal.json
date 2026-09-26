@@ -15,6 +15,13 @@
       "when": 1790259702416,
       "tag": "0001_restrict_reads_to_role_holders",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1790399414663,
+      "tag": "0002_admin_role_management",
+      "breakpoints": true
     }
   ]
 }
