@@ -27,7 +27,7 @@ export function Pill({ value }: { value?: string | null }) {
   );
 }
 
-export function PageHeader({ title, sub, children }: { title: string; sub?: string; children?: ReactNode }) {
+export function PageHeader({ title, sub, children }: { title: string; sub?: string | undefined; children?: ReactNode }) {
   return (
     <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
       <div>
@@ -89,7 +89,7 @@ export function Empty({ text }: { text: string }) {
   );
 }
 
-export function QueryState({ q, empty, children }: { q: { isLoading: boolean; error: unknown; data?: unknown[] }; empty: string; children: ReactNode }) {
+export function QueryState({ q, empty, children }: { q: { isLoading: boolean; error: unknown; data?: unknown[] | undefined }; empty: string; children: ReactNode }) {
   if (q.isLoading) return <Loading />;
   if (q.error) return <ErrorState error={q.error} />;
   if (!q.data?.length) return <Empty text={empty} />;
