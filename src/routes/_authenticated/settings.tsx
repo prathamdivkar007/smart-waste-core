@@ -21,7 +21,7 @@ function SettingRow({ s }: { s: Setting }) {
   useEffect(() => setV(String(s.value)), [s.value]);
   const submit = async () => {
     const n = Number(v);
-    if (!Number.isFinite(n) || n < 0) return toast.error("Enter a positive number");
+    if (!Number.isFinite(n) || n < 0) { toast.error("Enter a positive number"); return; }
     try { await save({ data: { key: s.key, value: n } }); toast.success(`${s.key} saved`); } catch (e) { toast.error(e instanceof Error ? e.message : "Failed"); }
   };
   return (
@@ -49,7 +49,7 @@ function Users() {
     const { error } = has
       ? await supabase.from("user_roles").delete().eq("user_id", uid).eq("role", role)
       : await supabase.from("user_roles").insert({ user_id: uid, role });
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     qc.invalidateQueries({ queryKey: ["users-roles"] });
     qc.invalidateQueries({ queryKey: ["me"] });
   };
