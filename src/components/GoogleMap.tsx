@@ -17,10 +17,11 @@ let loader: Promise<any> | null = null;
 function loadMaps() {
   if (window.google?.maps?.Map) return Promise.resolve(window.google);
   if (loader) return loader;
+  const key = import.meta.env["VITE_LOVABLE_CONNECTOR_GOOGLE_MAPS_BROWSER_KEY"];
+  const ch = import.meta.env["VITE_LOVABLE_CONNECTOR_GOOGLE_MAPS_TRACKING_ID"] ?? "";
+  if (!key) return Promise.reject(new Error("Google Maps key is missing — connect Google Maps in Connectors."));
   loader = new Promise((resolve, reject) => {
     window.__gmapsInit = () => resolve(window.google);
-    const key = import.meta.env["VITE_LOVABLE_CONNECTOR_GOOGLE_MAPS_BROWSER_KEY"];
-    const ch = import.meta.env["VITE_LOVABLE_CONNECTOR_GOOGLE_MAPS_TRACKING_ID"];
     const s = document.createElement("script");
     s.src = `https://maps.googleapis.com/maps/api/js?key=${key}&loading=async&callback=__gmapsInit&channel=${ch}`;
     s.async = true;
